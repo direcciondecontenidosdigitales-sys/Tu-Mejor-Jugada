@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1b154d" />
+    <meta name="theme-color" content="#2b1379" />
     <meta name="description" content="Tu Mejor Jugada: tres desafíos para aprender sobre apuestas online, cuidarnos entre amigos y crear un spot con mensaje." />
     <meta property="og:title" content="Tu Mejor Jugada | 3 desafíos" />
     <meta property="og:description" content="Jugá, decidí y creá. ¡Tu mensaje puede inspirar a otros jóvenes!" />
@@ -19,6 +19,270 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 </style>
+    <style>
+/* Edición visual ARCADE: ilustraciones, color y profundidad sin recursos externos. */
+:root {
+  --ink: #27165f;
+  --purple: #4422a9;
+  --purple-deep: #26106d;
+  --pink: #ff4f9b;
+  --blue: #30d7fa;
+  --mint: #88f4b4;
+  --yellow: #ffeb59;
+  --shadow: 0 22px 55px rgba(66, 28, 132, .15);
+}
+body { background: #eeedff; }
+.site-shell { background: linear-gradient(180deg, #ffffff 0%, #fcfaff 75%, #ffffff 100%); }
+.site-header { position: relative; z-index: 9; box-shadow: 0 5px 24px rgba(43, 19, 121, .07); }
+.hero {
+  background: radial-gradient(ellipse at 72% 35%, #6737d2 0%, transparent 45%),
+              radial-gradient(ellipse at 0% 100%, #3f1696 0%, transparent 56%),
+              linear-gradient(126deg, #21105f 3%, #3b1b9b 56%, #1a125f 100%);
+  overflow: hidden;
+}
+.hero::before {
+  background-image: radial-gradient(#fff8 1.4px, transparent 1.5px),
+                    linear-gradient(108deg, transparent 54%, #ffffff08 54%, #ffffff08 55%, transparent 55%);
+  background-size: 27px 27px, 100% 100%;
+  opacity: .65;
+  z-index: -1;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  right: -190px;
+  bottom: -315px;
+  border: 95px solid rgba(255, 234, 93, .09);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.eyebrow { color: #b5ffce; }
+.eyebrow-dot { background: #9cffc3; box-shadow: 0 0 0 6px #9cffc33d, 0 0 26px #9cffc3; }
+.hero h1 { text-shadow: 0 5px 0 #160a46, 0 16px 28px #160a4659; }
+.hero h1>span:first-child { color: #ffed65; }
+.hero-star { color: #ff66b1; text-shadow: 0 0 24px #ff4f9b80; }
+.hero-tagline { text-wrap: balance; }
+.hero-desc { color: #e2d9ff; }
+.hero-mininote { color: #e5ddff; }
+.btn { position: relative; isolation: isolate; border-radius: 16px; transition: transform .2s, box-shadow .2s, filter .2s; }
+.btn:hover { transform: translateY(-4px); filter: saturate(1.1); }
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: linear-gradient(112deg, #ff66a9 0%, #ff4f9b 48%, #ff8f64 100%);
+  color: #250f54;
+  box-shadow: 0 7px 0 #a92d79, 0 14px 28px #ff4f9b3a;
+}
+.btn-primary:hover { box-shadow: 0 5px 0 #a92d79, 0 18px 28px #ff4f9b55; }
+.btn-dark { background: linear-gradient(110deg, #5129bb, #32147c); box-shadow: 0 6px 0 #1f1053; }
+.btn-yellow { background: linear-gradient(115deg, #fff47b, #ffcf54); box-shadow: 0 5px 0 #c59836; }
+.btn-outline { border-color: #aa8fe7; color: #4822a7; }
+.hero-art { filter: drop-shadow(0 16px 20px #17074650); }
+.orb-cyan {
+  background: radial-gradient(circle at 30% 27%, #b5fcff, #35e4ff 47%, #33a8f2 100%);
+  opacity: .98;
+  box-shadow: 0 0 75px #25ebff45;
+  animation: orb-breathe 6s ease-in-out infinite alternate;
+}
+.orb-pink {
+  background: radial-gradient(circle at 27% 25%, #ffd5a3, #ff69b2 54%, #ff3a8f);
+  opacity: .95;
+  box-shadow: 0 0 70px #ff69b24c;
+  animation: orb-breathe 5.5s ease-in-out -2s infinite alternate-reverse;
+}
+.orbit-ring { border: 3px dashed #ffffffe0; opacity: .8; }
+.art-card {
+  border: 4px solid #1b0e54;
+  box-shadow: 9px 13px 0 #18084d, 18px 25px 28px #16094b60;
+  transition: filter .25s;
+}
+.art-card-main {
+  background: linear-gradient(152deg, #fff587 0%, #ffe550 52%, #ffc957 100%);
+  box-shadow: 10px 15px 0 #1c0d59, 22px 32px 24px #14063d7a, inset 0 7px 0 #ffffff82;
+  animation: arcade-float-main 5s ease-in-out infinite;
+}
+.art-card-main::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 2px dashed #3d20743d;
+  border-radius: 16px;
+  pointer-events: none;
+}
+.art-card-big {
+  position: relative;
+  color: #3e1892;
+  text-shadow: 5px 5px 0 #ff83ad;
+  -webkit-text-stroke: 2px #261056;
+}
+.art-card-caption { position: relative; color: #2d146e; }
+.art-card-bottom { position: relative; color: #451a91; box-shadow: 0 4px 0 #e6b852; }
+.art-card-spark { z-index: 1; color: #fa419a; }
+.art-card-top {
+  background: linear-gradient(145deg, #bcfbff 0%, #33d8f8 78%);
+  animation: arcade-float-left 4.8s ease-in-out infinite;
+}
+.art-card-bottom-right {
+  background: linear-gradient(145deg, #ffbdde, #ff65a8 65%, #ff9579);
+  animation: arcade-float-right 4.5s ease-in-out -1.6s infinite;
+}
+.art-svg { display: block; width: 66px; height: 66px; margin-bottom: 0; filter: drop-shadow(2px 4px 0 #26105627); }
+.art-card-top, .art-card-bottom-right { font-size: 19px; gap: 2px; }
+.art-sticker {
+  background: linear-gradient(110deg, #ffffff 0%, #e2fffb 100%);
+  border: 2px solid #26135d;
+  color: #4723a2;
+  box-shadow: 4px 5px 0 #170b51, 7px 11px 14px #16054757;
+}
+.arcade-spark {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 3px solid #27105a;
+  border-radius: 18px;
+  font: 900 36px/1 Outfit, sans-serif;
+  box-shadow: 5px 7px 0 #180948;
+}
+.arcade-spark-a { top: 0; right: 14%; color: #5423ac; background: #aeffb2; transform: rotate(18deg); animation: arcade-wiggle 4s ease-in-out infinite; }
+.arcade-spark-b { bottom: 0; left: 9%; color: #45239e; background: #ffa65f; transform: rotate(-14deg); animation: arcade-wiggle 4.8s ease-in-out -1s infinite; }
+.arcade-spark-c { bottom: 82px; right: 8%; width: 38px; height: 38px; border-radius: 50%; color: #ffec5c; background: #45219e; font-size: 23px; transform: rotate(23deg); }
+.hero-scribble-a { animation: arcade-twinkle 3.5s ease-in-out infinite; }
+.hero-scribble-b { animation: arcade-twinkle 4s ease-in-out -1.5s infinite; }
+.game-dashboard { margin-top: 65px; }
+.dashboard-top { color: #34157b; }
+.score-pill {
+  background: linear-gradient(115deg, #efe7ff, #dffaff);
+  border: 2px solid #dbcbff;
+  box-shadow: 0 4px 0 #c6b7ed;
+}
+.score-pill strong { color: #4c22ae; }
+.progress-track { height: 15px; background: #e9e3fd; box-shadow: inset 0 2px 5px #391d8940; }
+.progress-fill { background: linear-gradient(90deg, #ff61ac 0%, #ffdf53 45%, #65eebc 76%, #40d5fa 100%); }
+.level-grid { gap: 18px; }
+.level-tile {
+  border-width: 2px;
+  min-height: 119px;
+  background: #f8f6ff;
+  opacity: .78;
+  box-shadow: 0 6px 0 #e7e0fa;
+  transition: transform .25s, background .25s;
+}
+.level-tile:nth-child(1) { border-color: #9de9fa; background: #effcff; box-shadow: 0 6px 0 #9ce9f5; }
+.level-tile:nth-child(2) { border-color: #ffbddb; background: #fff0f8; box-shadow: 0 6px 0 #ffc5df; }
+.level-tile:nth-child(3) { border-color: #f6dc88; background: #fffbdf; box-shadow: 0 6px 0 #f6de90; }
+.level-tile.is-current { opacity: 1; transform: translateY(-4px); outline: 3px solid #7039d7; outline-offset: 1px; }
+.level-tile.is-completed { opacity: 1; border-color: #67dfad; background: #e8fff1; box-shadow: 0 6px 0 #73e2b2; }
+.level-number { color: #4b2eae; }
+.level-icon { filter: drop-shadow(0 3px 1px #4114a12c); }
+.level-tile .level-status { color: #6d45ad; }
+.game-stage { margin-top: 36px; }
+.stage-intro {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #e4cfff;
+  background: radial-gradient(circle at 12% 17%, #b7f7ff 0 11%, transparent 11.2%),
+              radial-gradient(circle at 91% 85%, #ffbdde 0 12%, transparent 12.2%),
+              linear-gradient(125deg, #fff4bd, #ffe9fb 45%, #d5f8ff 100%);
+  box-shadow: 0 10px 0 #e8dcff, 0 27px 34px #5128a21a;
+}
+.stage-intro::before, .stage-intro::after {
+  position: absolute;
+  font: 900 58px Outfit, sans-serif;
+  color: #7536ce;
+  opacity: .35;
+  pointer-events: none;
+}
+.stage-intro::before { content: '✳'; left: 10%; top: 17%; transform: rotate(-21deg); }
+.stage-intro::after { content: '✦'; right: 11%; bottom: 19%; transform: rotate(18deg); }
+.intro-icon { display: inline-grid; place-items: center; width: 92px; height: 92px; background: #ffeb63; border: 3px solid #4e239d; border-radius: 25px; box-shadow: 6px 7px 0 #b07de7; transform: rotate(-7deg); }
+.stage-intro h2 span { color: #ef318c; }
+.stage-kicker, .challenge-kicker { color: #832cca; }
+.challenge-panel { border-color: #dcd0f8; box-shadow: 0 12px 0 #efe8ff, 0 26px 45px #4b26951d; }
+.challenge-header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(105deg, #adf5ff 0%, #e9dbff 50%, #ffcce4 100%);
+  border-bottom: 3px solid #e0d0fc;
+}
+.challenge-header::after { content: '✳'; position: absolute; color: #ffffff88; font: 900 155px/1 Outfit, sans-serif; right: 12%; top: -41px; pointer-events: none; }
+.challenge-header > * { position: relative; z-index: 1; }
+.challenge-emoji { display: grid; place-items: center; background: #ffffff8a; border: 2px solid #ffffff; border-radius: 20px; width: 76px; height: 76px; flex: 0 0 76px; box-shadow: 0 5px 0 #5c3e9f27; }
+.question-tag { background: #e9dfff; color: #5127a5; border: 1px solid #d8c4ff; }
+.answer {
+  border-color: #ddd3f5;
+  background: linear-gradient(145deg, #fff, #fcfaff);
+  box-shadow: 0 5px 0 #e5def4;
+  transition: transform .16s, box-shadow .16s, border-color .16s, background .16s;
+}
+.answer:not(:disabled):hover { transform: translateY(-4px); box-shadow: 0 9px 0 #d4b9fd; border-color: #8958ea; background: #f7f0ff; }
+.answer-letter { background: #ede3ff; color: #5725b1; border: 1px solid #d8c4ff; }
+.answer.is-correct { border-color: #35bc7a; background: #e5ffef; box-shadow: 0 5px 0 #91e1b6; }
+.answer.is-wrong { border-color: #f97fa9; background: #fff0f5; box-shadow: 0 5px 0 #ffb9ce; }
+.feedback { border-width: 2px; box-shadow: 0 5px 0 #d0edd7; }
+.feedback.is-wrong { box-shadow: 0 5px 0 #ffe3b5; }
+.milestone { background: radial-gradient(circle at 12% 18%, #c1faff 0 10%, transparent 10.2%), linear-gradient(135deg, #deffe9, #e0f2ff 45%, #ffe0f1); }
+.milestone-bubble { filter: drop-shadow(0 7px 0 #b95ab358); }
+.milestone .earned { box-shadow: 0 4px 0 #7bd9a2; }
+.creative-choice { border-color: #e0d7fa; box-shadow: 0 3px 0 #eae1fa; transition: transform .15s, border-color .15s; }
+.creative-choice:hover { transform: translateX(3px); border-color: #ee75b1; }
+.creative-choice.selected { background: linear-gradient(100deg, #ffeff8, #f5eeff); border-color: #ec53a4; box-shadow: 0 3px 0 #ffb7d7; }
+.storyboard { background: linear-gradient(170deg, #2b127c, #211259); box-shadow: 9px 10px 0 #b9a2f6; }
+.storyboard-head { background: linear-gradient(100deg, #6230c8, #4d1aa9); }
+.storyboard-bottom { background: linear-gradient(100deg, #ffee71, #ffd05c); }
+.finish-panel { background: radial-gradient(circle at 10% 13%, #b5f6ff 0 8%, transparent 8.2%), radial-gradient(circle at 90% 87%, #ffc1da 0 10%, transparent 10.2%), linear-gradient(125deg, #dffff1, #fff6c7 52%, #ffe3f1); }
+.finish-score { border-color: #4b1cb2; box-shadow: 8px 8px 0 #4b1cb2; }
+.finish-score strong { color: #4b1cb2; }
+.contest-cta {
+  background: radial-gradient(circle at 90% 10%, #743ae8 0 10%, transparent 32%), linear-gradient(115deg, #321482, #5a24bc 64%, #4b1c9f);
+  border-top: 7px solid #ffdc57;
+}
+.contest-cta::before { border-color: #ffe45c25; }
+.contest-chips span { background: #ffffff18; border-color: #d9bfff; }
+.contest-invite { border-color: #e9c2ff; background: #ffffff1b; }
+.site-footer { background: #f9f6ff; }
+@keyframes arcade-float-main { 0%, 100% { transform: rotate(-7deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(-11px); } }
+@keyframes arcade-float-left { 0%, 100% { transform: rotate(-13deg) translateY(0); } 50% { transform: rotate(-9deg) translateY(9px); } }
+@keyframes arcade-float-right { 0%, 100% { transform: rotate(13deg) translateY(0); } 50% { transform: rotate(17deg) translateY(-9px); } }
+@keyframes arcade-wiggle { 0%, 100% { transform: rotate(18deg) translateY(0); } 50% { transform: rotate(9deg) translateY(7px); } }
+@keyframes arcade-twinkle { 0%, 100% { opacity: .65; transform: scale(.87) rotate(-8deg); } 50% { opacity: 1; transform: scale(1.13) rotate(12deg); } }
+@keyframes orb-breathe { from { transform: scale(.97); } to { transform: scale(1.06); } }
+@media (max-width: 800px) {
+  .hero { overflow: hidden; }
+  .game-dashboard { margin-top: 44px; }
+  .arcade-spark-a { right: 6%; }
+  .stage-intro::before { left: 3%; }
+  .stage-intro::after { right: 3%; }
+}
+@media (max-width: 560px) {
+  .hero { padding-bottom: 0; }
+  .hero h1 { text-shadow: 0 3px 0 #180949, 0 9px 18px #160a4659; }
+  .hero-art { margin-bottom: -150px; }
+  .arcade-spark { width: 53px; height: 53px; }
+  .arcade-spark-c { width: 38px; height: 38px; }
+  .game-dashboard { margin-top: 35px; }
+  .level-grid { gap: 9px; }
+  .level-tile { min-height: 122px; box-shadow: 0 4px 0 #e4dbf6; }
+  .level-tile.is-current { transform: translateY(-3px); outline-width: 2px; }
+  .level-tile:nth-child(1) { box-shadow: 0 4px 0 #9ce9f5; }
+  .level-tile:nth-child(2) { box-shadow: 0 4px 0 #ffc5df; }
+  .level-tile:nth-child(3) { box-shadow: 0 4px 0 #f6de90; }
+  .level-tile.is-completed { box-shadow: 0 4px 0 #73e2b2; }
+  .stage-intro { padding: 38px 18px; }
+  .intro-icon { width: 76px; height: 76px; font-size: 44px; }
+  .stage-intro::before, .stage-intro::after { font-size: 34px; }
+  .challenge-emoji { width: 51px; height: 51px; flex-basis: 51px; border-radius: 14px; }
+  .answer { box-shadow: 0 4px 0 #e5def4; }
+  .site-header { box-shadow: 0 3px 16px #2b137915; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .art-card-main, .art-card-top, .art-card-bottom-right,
+  .arcade-spark, .orb-cyan, .orb-pink, .hero-scribble { animation: none !important; }
+}
+    </style>
     
   </head>
   <body>
@@ -49,14 +313,34 @@
             <div class="orb orb-cyan"></div>
             <div class="orb orb-pink"></div>
             <div class="orbit-ring"></div>
-            <div class="art-card art-card-top"><span class="art-card-icon">🧠</span><span>¡PENSÁ<br />ANTES!</span></div>
+            <div class="arcade-spark arcade-spark-a">✦</div>
+            <div class="arcade-spark arcade-spark-b">♥</div>
+            <div class="arcade-spark arcade-spark-c">★</div>
+            <div class="art-card art-card-top">
+              <svg class="art-svg" viewBox="0 0 72 72" fill="none" aria-hidden="true" focusable="false">
+                <path d="M26 13c-10 0-17 9-16 18-5 5-5 14 2 18 0 8 9 13 17 9 4 5 12 5 16 0 8 3 16-2 16-10 7-6 6-15 0-19 1-9-7-17-16-16-5-5-13-5-19 0Z" fill="#fff2b0" stroke="#33157d" stroke-width="3.5"/>
+                <path d="M35 13v45M23 25c8 0 10 4 12 10m-12 7c7 0 10-4 12-9m2-8c8 0 11 4 11 11m-11 5c5-5 9-4 13-4" stroke="#f280aa" stroke-width="3" stroke-linecap="round"/>
+                <path d="m57 7 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#fff" stroke="#33157d" stroke-width="2"/>
+              </svg>
+              <span>¡PENSÁ<br />ANTES!</span>
+            </div>
             <div class="art-card art-card-main">
               <div class="art-card-spark">✦ ✳</div>
               <span class="art-card-big">3</span>
               <span class="art-card-caption">DESAFÍOS</span>
               <span class="art-card-bottom">¿TE ANIMÁS?</span>
             </div>
-            <div class="art-card art-card-bottom-right"><span class="art-card-icon">🎬</span><span>CREÁ TU<br />SPOT</span></div>
+            <div class="art-card art-card-bottom-right">
+              <svg class="art-svg" viewBox="0 0 72 72" fill="none" aria-hidden="true" focusable="false">
+                <rect x="9" y="22" width="53" height="39" rx="8" fill="#fff9c8" stroke="#371572" stroke-width="3.5"/>
+                <path d="M9 31h53" stroke="#371572" stroke-width="3.5"/>
+                <path d="m23 22 9 9m7-9 9 9M18 14l39-8 3 13-42 9-3-11c-.3-1.3.7-2.8 3-3Z" fill="#b3f7ff" stroke="#371572" stroke-width="3" stroke-linejoin="round"/>
+                <path d="m27 12 9 10m5-13 9 11" stroke="#371572" stroke-width="3"/>
+                <path d="m31 39 13 8-13 8V39Z" fill="#ff66a8" stroke="#371572" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="60" cy="13" r="6" fill="#fff26b" stroke="#371572" stroke-width="2"/>
+              </svg>
+              <span>CREÁ TU<br />SPOT</span>
+            </div>
             <div class="art-sticker">#ElegíBien</div>
           </div>
         </section>
