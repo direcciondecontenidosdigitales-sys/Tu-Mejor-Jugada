@@ -283,7 +283,7 @@ body { background: #eeedff; }
   .arcade-spark, .orb-cyan, .orb-pink, .hero-scribble { animation: none !important; }
 }
     </style>
-    
+    <link rel="stylesheet" href="./enhancements.css" />
   </head>
   <body>
     <div class="site-shell">
@@ -304,10 +304,13 @@ body { background: #eeedff; }
           <div class="hero-copy">
             <div class="eyebrow"><span class="eyebrow-dot"></span> EDICIÓN JÓVENES · CATAMARCA</div>
             <h1 id="hero-title">TU MEJOR<br /><span>JUGADA</span> <span class="hero-star" aria-hidden="true">✳</span></h1>
-            <p class="hero-tagline">Tres desafíos. Muchas decisiones.<br />Un mensaje que puede cambiarlo todo.</p>
-            <p class="hero-desc">Aprendé a reconocer los riesgos de las apuestas online y convertí lo que sabés en una idea para un video.</p>
-            <button class="btn btn-primary hero-cta" id="start-button" type="button">¡QUIERO JUGAR! <span aria-hidden="true">↗</span></button>
-            <div class="hero-mininote">🎮 Gratis · Sin registro · Desde tu celu</div>
+            <p class="hero-tagline">Activá tu mente. Subí de nivel.<br />Elegí tu mejor jugada.</p>
+            <p class="hero-desc">Detectá mitos sobre las apuestas online, ayudá a tus amigos y creá un spot que deje huella. ¡Ahora con misiones, medallas y desafíos contrarreloj!</p>
+            <button class="btn btn-primary hero-cta" id="start-button" type="button">⚡ EMPEZAR A JUGAR <span aria-hidden="true">↗</span></button>
+            <div class="hero-meta" aria-label="Características del juego">
+              <span>🎯 10 PREGUNTAS</span><span>🏅 3 MEDALLAS</span><span>🔥 RACHA DE ACIERTOS</span>
+            </div>
+            <div class="hero-mininote">🎮 Gratis · Sin registro · Ranking local · Desde tu celu</div>
           </div>
           <div class="hero-art" aria-hidden="true">
             <div class="orb orb-cyan"></div>
@@ -348,9 +351,15 @@ body { background: #eeedff; }
         <section class="game-dashboard" aria-label="Tu progreso">
           <div class="dashboard-top">
             <span>🚀 TU RECORRIDO</span>
-            <div class="score-pill"><span>PUNTOS</span> <strong id="score-value">0</strong><span class="score-max">/100</span></div>
+            <div class="score-pill"><span>PUNTOS</span> <strong id="score-value">0</strong><span class="score-max" id="score-max">/190</span></div>
           </div>
           <div class="progress-track" role="progressbar" aria-label="Desafíos completados" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="play-hud" aria-label="Indicadores del juego">
+            <div class="hud-card lives-card"><span class="hud-icon">💗</span><div><span class="hud-label">TUS VIDAS</span><strong id="lives-value" aria-label="3 vidas">♥ ♥ ♥</strong></div></div>
+            <div class="hud-card streak-card"><span class="hud-icon">🔥</span><div><span class="hud-label">TU RACHA</span><strong id="streak-value">0 ACIERTOS</strong></div></div>
+            <div class="hud-card mode-card"><span class="hud-icon">⏱️</span><div><span class="hud-label">MODALIDAD</span><strong id="mode-value">MODO ARCADE</strong></div></div>
+            <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Activar sonidos">🔇 <span>SONIDO OFF</span></button>
+          </div>
           <div class="level-grid" id="level-grid">
             <div class="level-tile is-current" data-level="1"><div class="level-number">01</div><span class="level-icon">🕵️</span><div><strong>CAZÁ EL MITO</strong><span>¿Verdad o verso?</span></div><span class="level-status">LISTO</span></div>
             <div class="level-tile" data-level="2"><div class="level-number">02</div><span class="level-icon">💬</span><div><strong>ELEGÍ LA JUGADA</strong><span>Decisiones reales</span></div><span class="level-status">SIGUE</span></div>
@@ -363,7 +372,7 @@ body { background: #eeedff; }
             <div class="intro-icon" aria-hidden="true">⚡</div>
             <div class="stage-kicker">EL DESAFÍO COMIENZA ACÁ</div>
             <h2>¿LISTO PARA TOMAR <span>BUENAS DECISIONES?</span></h2>
-            <p>Cada respuesta viene con una explicación. Acá se aprende jugando, sin presión y a tu ritmo.</p>
+            <p>Elegí entre modo Arcade con cronómetro y puntos extra, o modo Tranqui para jugar sin límite de tiempo.</p>
             <button class="btn btn-dark" type="button" data-action="start">EMPEZAR DESAFÍO 1 <span aria-hidden="true">→</span></button>
           </div>
         </section>
@@ -387,350 +396,6 @@ body { background: #eeedff; }
       <footer class="site-footer"><div>💜 Aprender a cuidarnos también es una gran jugada.</div><span>Contenidos de prevención basados en UNICEF Argentina, OMS y organismos nacionales · 2026</span></footer>
     </div>
     <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
-  <script>
-// Tu Mejor Jugada: juego educativo sin cuentas, datos personales ni rastreadores.
-const stage = document.getElementById('game-stage');
-const scoreValue = document.getElementById('score-value');
-const progressFill = document.getElementById('progress-fill');
-const progressTrack = document.getElementById('progress-track');
-const levelTiles = [...document.querySelectorAll('.level-tile')];
-
-const challenges = {
-  quiz1: {
-    number: 1,
-    icon: '🕵️',
-    title: 'CAZÁ EL MITO',
-    subtitle: 'Hay mensajes que suenan increíbles... y no son verdad.',
-    label: 'VERDAD O VERSO',
-    questions: [
-      {
-        question: '“Si perdí varias veces, la próxima seguro gano”. ¿Qué pensás?',
-        choices: ['Sí, así funcionan las apuestas.', 'No. Perder antes no garantiza ganar después.'],
-        correct: 1,
-        explanation: 'No hay una ganancia garantizada: los juegos de azar dependen de resultados inciertos. Haber perdido varias veces no asegura que la próxima apuesta salga bien. Además, intentar recuperar lo perdido es una señal de alerta de juego problemático.',
-        source: 'Organización Mundial de la Salud y Argentina.gob.ar',
-        sourceUrl: 'https://www.argentina.gob.ar/capital-humano/familia/bienestar-emocional/somos-familia/apuestas-online-y-juego-problematico'
-      },
-      {
-        question: '¿Cuál de estas situaciones es una señal de alerta?',
-        choices: ['No poder dejar de pensar en recuperar plata perdida.', 'Desconectar el celular para descansar.', 'Ir a jugar a la pelota con amigos.'],
-        correct: 0,
-        explanation: 'Pensar constantemente en las apuestas, ocultar gastos o buscar recuperar pérdidas son señales de alerta. No alcanzan por sí solas para diagnosticar a alguien, pero sí son motivos para conversar y buscar acompañamiento sin juzgar.',
-        source: 'Argentina.gob.ar: Apuestas online y juego problemático',
-        sourceUrl: 'https://www.argentina.gob.ar/capital-humano/familia/bienestar-emocional/somos-familia/apuestas-online-y-juego-problematico'
-      },
-      {
-        question: 'Las apuestas online para menores de edad...',
-        choices: ['Son una forma fácil de conseguir dinero.', 'Son seguras si se apuesta muy poquito.', 'No son para menores y pueden causar daños.'],
-        correct: 2,
-        explanation: 'En Argentina, las apuestas online están prohibidas para menores de 18 años. Aunque las plataformas se parezcan a videojuegos, implican arriesgar dinero y pueden afectar las emociones, los vínculos y la economía.',
-        source: 'UNICEF Argentina y Argentina.gob.ar',
-        sourceUrl: 'https://www.unicef.org/argentina/apuestas-online'
-      }
-    ]
-  },
-  quiz2: {
-    number: 2,
-    icon: '💬',
-    title: 'ELEGÍ LA JUGADA',
-    subtitle: 'Situaciones de todos los días. Tus decisiones importan.',
-    label: 'MODO CHAT ACTIVADO',
-    questions: [
-      {
-        question: 'Al grupo del curso llega un link: “¡Plata fácil! Entrá ahora”. ¿Qué hacés?',
-        choices: ['Lo comparto para que todos aprovechen.', 'No entro ni lo reenvío y aviso a un adulto de confianza.', 'Pruebo para ver si es real.'],
-        correct: 1,
-        explanation: 'Las promesas de dinero fácil, los bonos y los enlaces compartidos en chats son estrategias frecuentes para atraer a adolescentes a las apuestas. No abrir ni reenviar el enlace evita amplificar el riesgo; si te preocupa, pedí orientación.',
-        source: 'UNICEF Argentina: Apuestas online',
-        sourceUrl: 'https://www.unicef.org/argentina/apuestas-online'
-      },
-      {
-        question: 'Un amigo dice que perdió dinero apostando y está angustiado. ¿Cómo lo ayudás?',
-        choices: ['Lo escucho sin juzgar y lo acompaño a pedir ayuda.', 'Le presto dinero para que intente recuperarlo.', 'Lo cargo delante del grupo.'],
-        correct: 0,
-        explanation: 'Las burlas pueden aumentar la vergüenza y dificultar que alguien pida ayuda. Es preferible escuchar sin juzgar, no ofrecer dinero para seguir apostando y acompañar a la persona a hablar con un adulto o profesional de confianza.',
-        source: 'UNICEF Argentina: Apuestas online y salud mental',
-        sourceUrl: 'https://www.unicef.org/argentina/apuestas-online-salud-mental'
-      },
-      {
-        question: 'Querés hacer un video sobre prevención. ¿Qué mensaje suma de verdad?',
-        choices: ['“Con este truco siempre ganás”.', '“Apostar no tiene riesgos si sabés jugar”.', '“No todo lo que promete premios es una oportunidad”.'],
-        correct: 2,
-        explanation: 'La comunicación preventiva debe cuestionar las promesas engañosas y mostrar riesgos concretos. UNICEF advierte que la publicidad y los influencers pueden presentar las apuestas como éxito fácil; por eso un spot útil promueve pensamiento crítico, diálogo y cuidado.',
-        source: 'UNICEF Argentina: Apuestas online',
-        sourceUrl: 'https://www.unicef.org/argentina/apuestas-online'
-      }
-    ]
-  }
-};
-
-const creativeChoices = {
-  hook: [
-    '“¿Y si un clic te cuesta más que dinero?”',
-    '“No todo lo que parece premio lo es”.',
-    '“Te llegó un link. ¿Y ahora?”'
-  ],
-  format: [
-    '💬 Chat ficticio en pantalla',
-    '🎭 Mini sketch con compañeros',
-    '✨ Animación con ilustraciones'
-  ],
-  close: [
-    '“Pedir ayuda también es una gran jugada”.',
-    '“Tu tiempo y tus sueños valen mucho más”.',
-    '“Tu mejor jugada es decidir por vos”.'
-  ]
-};
-
-let state = initialState();
-
-function initialState() {
-  return { screen: 'intro', index: 0, selected: null, score: 0, completed: 0, creative: { hook: 0, format: 0, close: 2 }, copied: false };
-}
-
-function safeText(value) {
-  return String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
-function updateDashboard() {
-  scoreValue.textContent = String(state.score);
-  progressFill.style.width = `${(state.completed / 3) * 100}%`;
-  progressTrack.setAttribute('aria-valuenow', String(state.completed));
-  const activeLevel = state.screen === 'quiz2' || state.screen === 'milestone2' ? 2 : state.screen === 'creative' || state.screen === 'complete' ? 3 : 1;
-  levelTiles.forEach((tile, index) => {
-    const number = index + 1;
-    const completed = number <= state.completed;
-    tile.classList.toggle('is-completed', completed);
-    tile.classList.toggle('is-current', !completed && number === activeLevel);
-    tile.querySelector('.level-status').textContent = completed ? '✓ LISTO' : number === activeLevel ? 'EN JUEGO' : 'SIGUE';
-  });
-}
-
-function goToGame() {
-  stage.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-}
-
-function startQuiz(which) {
-  state.screen = which;
-  state.index = 0;
-  state.selected = null;
-  render();
-  goToGame();
-}
-
-function chooseAnswer(answerIndex) {
-  if (state.selected !== null) return;
-  const question = challenges[state.screen].questions[state.index];
-  state.selected = answerIndex;
-  if (answerIndex === question.correct) state.score += 10;
-  render();
-}
-
-function nextQuestion() {
-  if (state.selected === null) return;
-  const quiz = challenges[state.screen];
-  if (state.index < quiz.questions.length - 1) {
-    state.index += 1;
-    state.selected = null;
-  } else {
-    state.completed = Math.max(state.completed, quiz.number);
-    state.screen = `milestone${quiz.number}`;
-    confetti(quiz.number === 1 ? 19 : 24);
-  }
-  render();
-  goToGame();
-}
-
-function renderQuiz() {
-  const quiz = challenges[state.screen];
-  const item = quiz.questions[state.index];
-  const answered = state.selected !== null;
-  const right = answered && state.selected === item.correct;
-  stage.innerHTML = `
-    <div class="challenge-panel">
-      <div class="challenge-header">
-        <span class="challenge-emoji" aria-hidden="true">${quiz.icon}</span>
-        <div><span class="challenge-kicker">DESAFÍO ${quiz.number} DE 3</span><h2>${quiz.title}</h2><p>${quiz.subtitle}</p></div>
-        <div class="challenge-count"><strong>${state.index + 1}</strong> / ${quiz.questions.length}<br>RONDAS</div>
-      </div>
-      <div class="question-area">
-        <div class="question-step"><span class="question-tag">${quiz.label}</span><span>+10 PUNTOS POR ACIERTO</span></div>
-        <h3 class="question-title">${safeText(item.question)}</h3>
-        <div class="answer-grid" role="group" aria-label="Elegí una respuesta">
-          ${item.choices.map((choice, index) => {
-            const className = !answered ? '' : index === item.correct ? 'is-correct' : index === state.selected ? 'is-wrong' : 'is-dim';
-            return `<button type="button" class="answer ${className}" data-answer="${index}" ${answered ? 'disabled' : ''}>
-              <span class="answer-letter" aria-hidden="true">✦</span><span>${safeText(choice)}</span>
-            </button>`;
-          }).join('')}
-        </div>
-        ${answered ? `<div class="feedback ${right ? '' : 'is-wrong'}" role="status">
-          <span class="feedback-icon" aria-hidden="true">${right ? '💚' : '💡'}</span>
-          <div><h3>${right ? '¡EXCELENTE JUGADA! +10' : '¡SEGUIMOS APRENDIENDO!'}</h3>
-            <p>${safeText(item.explanation)}</p>
-            <div class="feedback-source">Fundamento: <a href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">${safeText(item.source)} ↗</a></div>
-            <button type="button" class="btn btn-dark" data-action="next">${state.index === quiz.questions.length - 1 ? 'VER MI RESULTADO' : 'SIGUIENTE RONDA'} <span aria-hidden="true">→</span></button>
-          </div></div>` : `<div class="stage-action-row"><span class="tipline">💭 Elegí con calma. Después te contamos por qué.</span><span class="tipline">Sin cronómetro</span></div>`}
-      </div>
-    </div>`;
-}
-
-function renderMilestone(number) {
-  const first = number === 1;
-  stage.innerHTML = `<div class="challenge-panel milestone">
-    <div class="milestone-bubble" aria-hidden="true">${first ? '🧠✨' : '💬💚'}</div>
-    <div class="stage-kicker">DESAFÍO ${number} SUPERADO</div>
-    <h2>${first ? '¡NO TE COMÉS EL VERSO!' : '¡SABÉS CUIDAR A TU EQUIPO!'}</h2>
-    <p>${first ? 'Ya sabés que las promesas de ganancias no son garantías. Ahora veamos qué harías en situaciones cotidianas.' : 'Escuchar, no compartir enlaces riesgosos y pedir ayuda también son decisiones valientes. ¡Llegó tu momento creativo!'}</p>
-    <span class="earned">⭐ LLEVÁS ${state.score} PUNTOS</span><br><br>
-    <button class="btn btn-primary" type="button" data-action="${first ? 'to-quiz2' : 'to-creative'}">${first ? 'IR AL DESAFÍO 2' : 'CREAR MI VIDEO'} <span aria-hidden="true">→</span></button>
-  </div>`;
-}
-
-function readableFormat(format) {
-  return format.replace(/^[^\p{L}]+/u, '').trim().toLowerCase();
-}
-
-function scriptText() {
-  const hook = creativeChoices.hook[state.creative.hook];
-  const format = readableFormat(creativeChoices.format[state.creative.format]);
-  const close = creativeChoices.close[state.creative.close];
-  return `TU MEJOR JUGADA — IDEA DE SPOT (45 SEGUNDOS)\n\nFORMATO: ${format}\n\n0–5 s | GANCHO\n${hook}\n\n5–20 s | SITUACIÓN\nMostrá a un grupo que recibe un mensaje de “dinero fácil” con un enlace de apuestas. Una persona duda antes de tocarlo.\n\n20–35 s | DECISIÓN\nEl grupo decide no abrir ni reenviar el enlace. Conversan: las apuestas no garantizan ganancias y, si algo preocupa, se puede pedir ayuda a alguien de confianza.\n\n35–45 s | CIERRE\n${close}\n\nConsejo: grabá con tu curso, usá una escena cercana y terminá con una invitación a reflexionar. ¡Tu idea puede convertirse en un video para Tu Mejor Jugada!`;
-}
-
-function renderCreative() {
-  const { hook, format, close } = state.creative;
-  const control = (key, title, subtitle) => `<div class="creative-control"><label class="creative-label">${title} <span style="font-weight:500;color:#8e86a5">${subtitle}</span></label><div class="creative-options">${creativeChoices[key].map((value, index) => `<button class="creative-choice ${state.creative[key] === index ? 'selected' : ''}" type="button" data-creative="${key}" data-creative-index="${index}" aria-pressed="${state.creative[key] === index}"><span class="choice-symbol" aria-hidden="true">${state.creative[key] === index ? '✓' : ''}</span>${safeText(value)}</button>`).join('')}</div></div>`;
-  stage.innerHTML = `<div class="challenge-panel creative-panel">
-    <div class="challenge-header"><span class="challenge-emoji" aria-hidden="true">🎥</span><div><span class="challenge-kicker">DESAFÍO 3 DE 3</span><h2>CREÁ TU SPOT</h2><p>¡Tu voz puede hacer que otro joven se detenga a pensar!</p></div><div class="challenge-count">+40<br>PUNTOS</div></div>
-    <div class="creative-top"><span class="question-tag">MODO CREATIVO ENCENDIDO ✨</span><h3>Elegí 3 ingredientes para tu video</h3><p>Todas las opciones son válidas. Armá tu propia idea y mirá cómo toma forma a la derecha.</p></div>
-    <div class="creative-grid"><div>
-      ${control('hook', '01 · EL GANCHO', '¿Con qué frase arrancás?')}
-      ${control('format', '02 · EL ESTILO', '¿Cómo lo vas a contar?')}
-      ${control('close', '03 · EL MENSAJE FINAL', '¿Con qué idea querés cerrar?')}
-    </div><aside class="storyboard" aria-label="Vista previa de tu guion">
-      <div class="storyboard-head"><strong>🎬 TU MINI GUION</strong><span>45 SEG.</span></div>
-      <div class="storyboard-body">
-        <div class="story-step"><span class="story-time">0–5 S</span><div><strong>EL GANCHO</strong><p>${safeText(creativeChoices.hook[hook])}</p></div></div>
-        <div class="story-step"><span class="story-time">5–20 S</span><div><strong>LA ESCENA</strong><p>Un grupo recibe un link de “dinero fácil”. ${safeText(readableFormat(creativeChoices.format[format]))}.</p></div></div>
-        <div class="story-step"><span class="story-time">20–35 S</span><div><strong>LA DECISIÓN</strong><p>Eligen no abrir ni reenviar el link. Hablan de los riesgos y de pedir ayuda.</p></div></div>
-        <div class="story-step"><span class="story-time">35–45 S</span><div><strong>EL CIERRE</strong><p>${safeText(creativeChoices.close[close])}</p></div></div>
-      </div><div class="storyboard-bottom">HECHO POR VOS, PARA OTROS JÓVENES 💛</div>
-    </aside></div>
-    <div class="creative-finish"><button class="btn btn-outline" type="button" data-action="copy">📋 COPIAR MI GUION</button><button class="btn btn-primary" type="button" data-action="finish">¡MI IDEA ESTÁ LISTA! <span aria-hidden="true">→</span></button></div>
-    ${state.copied ? '<p class="copy-notice" style="text-align:center;margin:-10px 0 24px" role="status">✅ ¡Guion copiado! Ya podés compartirlo con tu curso.</p>' : ''}
-  </div>`;
-}
-
-function renderFinish() {
-  stage.innerHTML = `<div class="challenge-panel finish-panel">
-    <div class="finish-stars" aria-hidden="true">🌟 🎬 🌟</div>
-    <div class="stage-kicker">¡COMPLETASTE LOS 3 DESAFÍOS!</div>
-    <h2>¡TU MEJOR JUGADA<br>RECIÉN EMPIEZA!</h2>
-    <p>Aprendiste a detectar riesgos, a cuidar a tus amigos y creaste una idea de video. Ahora podés convertirla en un mensaje real junto a tu curso.</p>
-    <div class="finish-score"><strong>${state.score}<span style="font-size:22px">/100</span></strong><span>PUNTOS DE APRENDIZAJE</span></div>
-    <div class="finish-message">No importa el puntaje: lo que cuenta es lo que aprendiste y lo que podés compartir.</div>
-    <div class="finish-actions"><button class="btn btn-dark" type="button" data-action="copy">📋 COPIAR MI GUION</button><button class="btn btn-primary" type="button" data-action="contest">🎥 ¡VAMOS A PARTICIPAR!</button><button class="btn btn-outline" type="button" data-action="restart">↻ VOLVER A JUGAR</button></div>
-    ${state.copied ? '<p class="copy-notice" role="status">✅ ¡Guion copiado!</p>' : ''}
-  </div>`;
-}
-
-function render() {
-  updateDashboard();
-  if (state.screen === 'quiz1' || state.screen === 'quiz2') renderQuiz();
-  else if (state.screen === 'milestone1') renderMilestone(1);
-  else if (state.screen === 'milestone2') renderMilestone(2);
-  else if (state.screen === 'creative') renderCreative();
-  else if (state.screen === 'complete') renderFinish();
-}
-
-async function copyScript() {
-  const contents = scriptText();
-  let success = false;
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(contents);
-      success = true;
-    }
-  } catch { /* fallback */ }
-  if (!success) {
-    const area = document.createElement('textarea');
-    area.value = contents;
-    area.style.position = 'fixed';
-    area.style.opacity = '0';
-    document.body.append(area);
-    area.select();
-    try { success = document.execCommand('copy'); } catch { /* no clipboard access */ }
-    area.remove();
-  }
-  if (success) {
-    state.copied = true;
-    render();
-  } else {
-    const file = new Blob([contents], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(file);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'mi-spot-tu-mejor-jugada.txt';
-    link.click();
-    URL.revokeObjectURL(url);
-  }
-}
-
-function confetti(amount = 25) {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const layer = document.getElementById('confetti-layer');
-  const colors = ['#ff5ca7', '#ffe75a', '#56d9f5', '#b8f6b0', '#ab84ff'];
-  for (let i = 0; i < amount; i++) {
-    const bit = document.createElement('span');
-    bit.className = 'confetti';
-    bit.style.left = `${Math.random() * 100}%`;
-    bit.style.background = colors[i % colors.length];
-    bit.style.animationDelay = `${Math.random() * .5}s`;
-    bit.style.transform = `rotate(${Math.random() * 180}deg)`;
-    layer.append(bit);
-    setTimeout(() => bit.remove(), 3000);
-  }
-}
-
-stage.addEventListener('click', event => {
-  const answer = event.target.closest('[data-answer]');
-  if (answer) return chooseAnswer(Number(answer.dataset.answer));
-  const creative = event.target.closest('[data-creative]');
-  if (creative) {
-    state.creative[creative.dataset.creative] = Number(creative.dataset.creativeIndex);
-    state.copied = false;
-    renderCreative();
-    return;
-  }
-  const action = event.target.closest('[data-action]')?.dataset.action;
-  if (!action) return;
-  if (action === 'start') startQuiz('quiz1');
-  else if (action === 'next') nextQuestion();
-  else if (action === 'to-quiz2') startQuiz('quiz2');
-  else if (action === 'to-creative') { state.screen = 'creative'; render(); goToGame(); }
-  else if (action === 'copy') void copyScript();
-  else if (action === 'contest') document.getElementById('concurso').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  else if (action === 'finish') {
-    if (state.completed < 3) { state.score += 40; state.completed = 3; }
-    state.screen = 'complete';
-    state.copied = false;
-    confetti(60);
-    render();
-    goToGame();
-  } else if (action === 'restart') {
-    state = initialState();
-    startQuiz('quiz1');
-  }
-});
-
-document.getElementById('start-button').addEventListener('click', () => {
-  if (state.screen === 'intro') startQuiz('quiz1');
-  else goToGame();
-});
-
-updateDashboard();
-
-</script>
+<script src="./game.js" defer></script>
 </body>
 </html>
