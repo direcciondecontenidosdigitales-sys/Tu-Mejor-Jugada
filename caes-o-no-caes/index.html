@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#180e42">
+  <meta name="description" content="¿Caés o no caés? Convertite en detective digital. Encontrá las pistas de estafas y aprendé a protegerte jugando.">
+  <meta property="og:title" content="¿Caés o no caés? | Detective Digital">
+  <meta property="og:description" content="5 casos. 15 pistas. Una gran misión: detectar los engaños digitales. Jugá gratis y sin registro.">
+  <title>¿Caés o no caés? · Detective Digital</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%231c104a'/%3E%3Ccircle cx='29' cy='27' r='15' stroke='%23d3ff5a' stroke-width='7' fill='none'/%3E%3Cpath d='m40 40 13 13' stroke='%23ff6aa9' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="¿Caés o no caés?, ir al inicio">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="21" cy="20" r="12" stroke="currentColor" stroke-width="6"/><path d="m31 31 11 11" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></span>
+        <span class="brand-name"><strong>¿CAÉS<span>O NO CAÉS?</span></strong><small>DETECTIVE DIGITAL / CATAMARCA</small></span>
+      </a>
+      <nav aria-label="Secciones" class="topnav"><a href="#casos">LOS CASOS</a><a href="#aprender">TIPS DE SEGURIDAD</a></nav>
+      <div class="nav-right"><button class="sound-btn" type="button" id="sound-toggle" aria-pressed="false" aria-label="Activar efectos de sonido">♪ <span>OFF</span></button><div class="xp-badge" aria-label="Mejor puntuación"><span>⚡</span><strong id="best-score">0</strong><small>RÉCORD XP</small></div></div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-labelledby="main-title">
+        <div class="hero-dots" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="kicker"><span class="pulse-dot" aria-hidden="true"></span> NUEVO JUEGO · EDICIÓN CATAMARCA</div>
+          <h1 id="main-title">¿CAÉS<br><span>O NO</span><br>CAÉS<span class="question-symbol">?</span></h1>
+          <p class="hero-slogan">No todo lo que brilla en internet es real. <em>¿Te animás a descubrirlo?</em></p>
+          <p class="hero-desc">Poné a prueba tu radar, cazá señales de estafa y elegí la mejor jugada. Cinco casos inspirados en engaños digitales cotidianos.</p>
+          <div class="hero-actions"><button class="button button-lime" id="hero-start" type="button">EMPEZAR LA MISIÓN <span aria-hidden="true">↗</span></button><a class="button button-ghost" href="#casos">VER LOS CASOS <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-notes"><span>🎮 GRATIS</span><span>🔒 SIN REGISTRO</span><span>📱 DESDE TU CELU</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-orbit"></div><div class="hero-orb orb-pink"></div><div class="hero-orb orb-cyan"></div>
+          <div class="phone-art">
+            <div class="phone-speaker"></div>
+            <div class="phone-screen">
+              <div class="phone-status"><span>09:41</span><span>••• ▰</span></div>
+              <div class="phone-chat-head"><span>?</span><div><strong>NÚMERO NUEVO</strong><small>mensaje entrante</small></div><b>⋮</b></div>
+              <div class="phone-chat-body"><div class="message-bubble">Hola! cambié de número 📲</div><div class="message-bubble">Necesito que me mandes plata <strong>YA</strong> 👀</div><div class="message-bubble fake-link">https://premio-facil.example</div><div class="phone-answer">¿CAÉS O NO CAÉS? 🤔</div></div>
+            </div>
+          </div>
+          <div class="art-alert"><span>!</span><strong>ALERTA<br>DE ESTAFA</strong></div>
+          <div class="art-magnifier"><svg viewBox="0 0 130 130" fill="none"><circle cx="49" cy="49" r="34" stroke="#190d47" stroke-width="13" fill="#b8ff73"/><circle cx="49" cy="49" r="20" stroke="#fff" stroke-width="5" stroke-dasharray="5 8"/><path d="m75 77 39 39" stroke="#190d47" stroke-width="18" stroke-linecap="round"/></svg></div>
+          <div class="art-sticker">+500 XP<br><span>EN JUEGO</span></div><div class="art-star art-star-a">✳</div><div class="art-star art-star-b">✦</div>
+        </div>
+        <div class="hero-bottom" aria-hidden="true"><span>✦ MIRÁ BIEN</span><span>✦ BUSCÁ PISTAS</span><span>✦ ELEGÍ TU JUGADA</span><span>✦ NO CAIGAS</span></div>
+      </section>
+
+      <section class="mission-strip" id="casos" aria-labelledby="cases-heading">
+        <div class="section-title-row"><div><span class="section-eyebrow">TU MISIÓN / 01—05</span><h2 id="cases-heading">5 CASOS. <span>15 PISTAS.</span></h2><p>Vas a explorar pantallas simuladas, encontrar señales y tomar decisiones. Si te equivocás, aprendés y seguís.</p></div><div class="record-card"><span>🏆</span><strong id="record-indicator">0/500</strong><small>TU RÉCORD</small></div></div>
+        <div class="case-rail" aria-label="Los cinco casos">
+          <div class="case-mini" data-mini="0"><span class="mini-number">01</span><span class="mini-emoji" aria-hidden="true">💬</span><strong>CAMBIO DE NÚMERO</strong><small>MENSAJERÍA</small></div>
+          <div class="case-mini" data-mini="1"><span class="mini-number">02</span><span class="mini-emoji" aria-hidden="true">🎁</span><strong>PREMIO TRAMPA</strong><small>REDES SOCIALES</small></div>
+          <div class="case-mini" data-mini="2"><span class="mini-number">03</span><span class="mini-emoji" aria-hidden="true">🛒</span><strong>OFERTA IMPOSIBLE</strong><small>COMPRAS</small></div>
+          <div class="case-mini" data-mini="3"><span class="mini-number">04</span><span class="mini-emoji" aria-hidden="true">🔑</span><strong>CÓDIGO SECRETO</strong><small>CUENTAS</small></div>
+          <div class="case-mini" data-mini="4"><span class="mini-number">05</span><span class="mini-emoji" aria-hidden="true">🎙️</span><strong>VOZ EN APUROS</strong><small>INTELIGENCIA ARTIFICIAL</small></div>
+        </div>
+      </section>
+
+      <section class="game-section" id="jugar" aria-labelledby="game-region-title" hidden>
+        <div class="game-utility"><button class="back-link" id="back-home" type="button">← VOLVER AL INICIO</button><span id="game-region-title">MODO DETECTIVE ACTIVADO <span class="live-pill">● EN VIVO</span></span></div>
+        <div id="arena" aria-live="polite" aria-atomic="false"></div>
+      </section>
+
+      <section class="tips" id="aprender" aria-labelledby="tips-title">
+        <div class="tips-copy"><span class="section-eyebrow">QUE NO TE AGARREN DESPREVENIDO</span><h2 id="tips-title">TU MEJOR PODER ES <em>DESCONFIAR A TIEMPO.</em></h2><p>Las señales de alerta no prueban por sí solas una estafa, pero son motivos para frenar y verificar por otro canal.</p><div class="tips-badges"><span>✓ NO COMPARTAS CÓDIGOS</span><span>✓ VERIFICÁ POR CANALES OFICIALES</span><span>✓ EVITÁ ENLACES SOSPECHOSOS</span></div><a class="source-btn" href="https://www.bcra.gob.ar/como-prevenir-estafas-virtuales/" target="_blank" rel="noopener noreferrer">CONSEJOS OFICIALES DEL BCRA ↗</a></div>
+        <div class="tips-illustration" aria-hidden="true"><div class="tips-shield"><span>✓</span></div><div class="tips-signal">⚡</div><div class="tips-spark">✦</div><div class="tips-text-sticker">PENSÁ<br>ANTES DE<br><strong>TOCAR</strong></div></div>
+      </section>
+    </main>
+    <footer class="footer"><div class="footer-brand">¿CAÉS <span>O NO CAÉS?</span> ✳</div><p>Juego educativo de prevención · Catamarca · 2026<br>Todos los casos son ficticios. No solicitamos datos personales ni financieros.</p><a href="#inicio">VOLVER ARRIBA ↑</a></footer>
+  </div>
+  <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+</body>
+</html>
